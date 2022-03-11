@@ -1,12 +1,10 @@
 const express = require('express');
 const path = require('path');
-
 const bodyParser = require('body-parser');
 
 const errorController = require('./controllers/error');
-
+const mongoConnect = require('./util/database').mongoConnect;
 const User = require('./models/user');
-const mongoose = require('mongoose');
 
 const app = express();
 
@@ -20,9 +18,9 @@ app.use(bodyParser.urlencoded({ extended: false }));
 app.use(express.static(path.join(__dirname, 'public')));
 
 app.use( (req, res, next) => {
-    User.findById('6068614b7742460a1056a007')
+    User.findById('---userId---')
         .then(user => {
-            req.user = user;
+            req.user = new User(user.name, user.email, user.cart, user._id);
             next();
         })
         .catch(err=>console.log(err));
@@ -33,25 +31,8 @@ app.use(shopRoutes);
 
 app.use(errorController.error404);
 
-mongoose.connect(
-    'mongodb+srv://Hamenos:Tr5902vLAq5JJnzx@cluster0.4uzwx.mongodb.net/node-js?retryWrites=true&w=majority'
-)
-.then(result => {
-    User.findOne().then(user => {
-        if(!user){
-            const user = new User({
-                name: 'Fatih',
-                email: 'fth@mono.com',
-                cart: {
-                    items: []
-                }
-            });
-            user.save();
-        }
-    });
-   
+mongoConnect( () =>{    
     app.listen(3000, '0.0.0.0', function() {
-        console.log('Listening to port:  ' + 3000); 
+        console.log('Listening to port:  ' + 3000);
     });
-})
-.catch(err => console.log(err));
+});

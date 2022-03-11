@@ -23,7 +23,7 @@ app.set('view engine','ejs');
 app.set('views','views');
 
 const store = new MongoDBStore({
-    uri: 'mongodb+srv://Hamenos:Tr5902vLAq5JJnzx@cluster0.4uzwx.mongodb.net/node-js?retryWrites=true&w=majority',
+    uri: '------connection string------',
     collection: 'sessions'
 });
 
@@ -66,7 +66,7 @@ app.use(authRoutes);
 app.use(errorController.error404);
 
 mongoose.connect(
-    'mongodb+srv://Hamenos:Tr5902vLAq5JJnzx@cluster0.4uzwx.mongodb.net/node-js?retryWrites=true&w=majority'
+    '------connection string------'
 )
 .then(result => {
     app.listen(3000, '0.0.0.0', function() {
