@@ -1,2 +1,2 @@
 # Node.js-practices
-Simple projects and homeworks with Node.js that I coded while learning Node.js v15.x.
+Simple projects and homeworks with Node.js v15.x that I coded while learning Node.js.
