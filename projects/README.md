@@ -1,5 +1,6 @@
-# Node.js-practices
-Simple projects and homeworks with Node.js v15.x that I coded while learning Node.js.
+# Shop App
+It is a simple web shopping application that consist of adding new products, deleting them, creating a shopping list and etc. as you can see on the picture.
+
 
 ### Noboots Db Diagram
 
